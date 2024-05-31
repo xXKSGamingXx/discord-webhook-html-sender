@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KS-Discord Webhook </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body class="background"></body>
+  <button class="sendMessage" onclick="sendMessage()">Send</button>
+</body>
+
+<script>
+  function sendMessage() {
+    const request = new XMLHttpRequest();
+    const webhookUrl = "WeBhook Url Here";
+
+    request.open("POST", webhookUrl);
+
+    request.setRequestHeader('Content-type', 'application/json');
+
+    const params = {
+      username: "xX_KSGaming_Xx",
+  avatar_url: "https://i.imgur.com/34utczw.png",
+  embeds: [{
+    title: "KS-CHILL",
+    description: `message`,
+    color: 16711680, // This sets the color of the embed (in decimal). For example, 16711680 is red.
+    thumbnail: {
+      url: "https://media.discordapp.net/attachments/1187118137641025717/1195936592188149841/pack.png?ex=65f6673f&is=65e3f23f&hm=e60a3fd7dcf2eea0df6b4ee477dfa6c1ae62697a77f1a8feff95173082e77a51&=&format=webp&quality=lossless"
+    },
+    image: {
+      url: "https://media.discordapp.net/attachments/1195938741454372914/1195939176512761946/KoKsus.jpg?ex=65f669a7&is=65e3f4a7&hm=d367cfdff4185d5cdcdb267517d6c74fbbb49487bd117c1f0dec1c438f71219f&format=webp&"
+    }
+  }]
+}
+    request.onreadystatechange = function() {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          console.log("Message sent successfully!");
+        } else {
+          console.error("Failed to send message. Status code: " + request.status);
+        }
+      }
+    };
+
+    request.send(JSON.stringify(params));
+  }
+</script>
+</html>
